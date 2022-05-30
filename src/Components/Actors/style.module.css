@@ -1,0 +1,17 @@
+.personage {
+  display: flex;
+  
+  flex-wrap: wrap;
+  padding: 25px;
+  width: 100%;
+}
+.blockInfo{
+  height: 250px;
+  width: 250px;
+}
+li{
+  text-decoration: none;
+  list-style-type: none;
+  justify-content: space-between;
+}
+
