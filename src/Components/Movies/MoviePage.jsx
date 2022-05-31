@@ -1,31 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCharacter, getCharactersApi, getMovieById} from '../../redux/films';
+import { getCharacter } from '../../redux/films';
 import MovieDetails from './MovieDetails';
 import { useDispatch, useSelector } from "react-redux";
+import { getCharactersByMovieId, getMovieById } from '../../Service/ApiService';
 
 
 const MovieContainer = () => {
   const [movie, setMovie] = useState({})
   const params = useParams()
-  // console.log('params:', params, 'movie:', movie)
+  
   const { characters } = useSelector(state => state.movies)
-  console.log('characters => =>', characters)
   const dispatch = useDispatch()
   
   useEffect(() => {
-    getMovieById(params.movieId)
+    getMovieById (params.movieId)
       .then((data) => {
         setMovie(data)
+
+        getCharactersByMovieId(data.characters)
+         .then((data) => 
+         dispatch(getCharacter(data.map(i => i.data)))
+        );
       })
-    getCharactersApi()
-    .then(results =>
-      dispatch(getCharacter(results)))
   }, [])
 
+///
+///   console.log('Move axios to sevice', characters)
+///
   return (
     <div>
-      <MovieDetails movies={movie} characters={characters}/>
+      <MovieDetails movies={movie} char={characters}/>
     </div>
   )
 }

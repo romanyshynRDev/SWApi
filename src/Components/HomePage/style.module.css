@@ -8,6 +8,7 @@ li {
 font-size: 22px;
 color: hsl(222, 96%, 79%);
 padding: 10px;
+list-style: none;
 }
 
 .container{

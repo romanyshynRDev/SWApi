@@ -1,10 +1,9 @@
 import React from "react";
 import style from './style.module.css'
 import { NavLink } from "react-router-dom";
-import CharacterInfo from "../Movies/Character/Character";
 
 const FilmContainer = (props) => {
-  // /debugger
+
   return (
     <div className={style.home}>
         {props.list.map((i) => 
@@ -17,7 +16,6 @@ const FilmContainer = (props) => {
             </NavLink>
           </div>        
         )}
-        
     </div>
   )
 }
