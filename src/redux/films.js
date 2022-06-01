@@ -4,7 +4,7 @@ import { getMoviesList } from '../Service/ApiService'
 
 const initialState = {    
   list: [],
-  isLoading: true,
+  isLoading: false,
   characters: [],
 }
 
@@ -13,7 +13,7 @@ const moviesList = createSlice({
   initialState,
   reducers:{
     getCharacter: (state, action) => {
-      state.characters = action.payload
+       state.characters = action.payload
     }
   },
   extraReducers: {
@@ -22,14 +22,15 @@ const moviesList = createSlice({
     },
     [getMoviesList.fulfilled]: (state, action) => {
       state.list = action.payload
-      state.isLoading = true
+      state.isLoading = false
     },
     [getMoviesList.rejected]: (state, action) => {
       state.isLoading = false
   },
 } 
 })
-export const { getCharacter } = moviesList.actions
+
+export const { getCharacter, charactersLoading } = moviesList.actions
 export default moviesList.reducer
 
 
