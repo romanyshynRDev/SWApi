@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   movieInfo: [],
   personages: [],
-  isLoading: false
+  isLoading: false,
+  isFetching: 'idle'
 }
 
 
@@ -14,7 +15,9 @@ const movieDetails = createSlice({
     getFilmInfo: (state, { payload }) => {
       state.movieInfo = payload
     },
+
   }
 })
-export const { getFilmInfo, getPersonagesByMovieId } = movieDetails.actions
 export default movieDetails.reducer
+export const { getFilmInfo } = movieDetails.actions
+

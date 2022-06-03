@@ -13,7 +13,7 @@ const FilmContainer = (props) => {
         : props.list.map((i) =>  
         <div key={i.title} className={style.home}>
           <div className={style.container}>
-            <NavLink to={`/movies/${i.episode_id}`}>
+            <NavLink to={`/movies/${i.url.match(/\d/g)}`}>
               <li ><span>Name:</span> {i.title}</li>
               <li><span>Episode:</span> {i.episode_id}</li>
               <li ><span>Director:</span> {i.director}</li>
