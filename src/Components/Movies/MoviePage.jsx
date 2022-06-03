@@ -1,42 +1,31 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCharacter } from '../../redux/films';
 import MovieDetails from './MovieDetails';
 import { useDispatch, useSelector } from "react-redux";
-import { getCharactersByMovieId, getMovieById } from '../../Service/ApiService';
-import { getFilmInfo} from '../../redux/movieDetailsInfo';
+import { getFilmById } from '../../Service/ApiService';
 
 
 const MovieContainer = () => {
+
   const params = useParams()
-  const { movieInfo } = useSelector(state => state.movieDetails)
-  const { characters, isLoading, } = useSelector(state => state.movies)
- 
+  const { movieInfo, personages, isLoading } = useSelector(state => state.movieDetails)
   const dispatch = useDispatch()
   
   useEffect(() => {
-  //  clickedMovie(params.movieId)
-    getMovieById(params.movieId)
-    // console.log(params)
-      .then((data) => {
-        dispatch(getFilmInfo(data))
-        // getCharactersByMovieId(data.characters)
-        //   .then((data) => 
-        //     dispatch(getCharacter(data.map(i => i.data)))
-        //  )
-      })
-      
-  })
+    dispatch(getFilmById(params.movieId))
+  }, [dispatch])
 
- //console.log('Local state movie', movieInfo)
+  console.log('personages =>', personages)
   return (
     <div>
       <MovieDetails  
         movieInfo={movieInfo}
-        char={characters} 
+        personages={personages} 
         isLoading={isLoading} 
       />
     </div>
   )
 }
 export default MovieContainer
+
+

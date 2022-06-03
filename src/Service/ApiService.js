@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-
 const instance = axios.create({
   baseURL:`https://swapi.dev/api/`,
   headers:{
@@ -22,9 +21,29 @@ export const getMoviesList = createAsyncThunk(
     .catch(Error)
   }
 )
+export const getFilmById = createAsyncThunk(
+  'movieDetails/getFilmById',
+  async (id, {dispatch}) => {
+    return instance.get(`films/${id}`)
+    .then((res) => {
+        return res.data
+      })
+  }
+)
 
 export const getCharactersByMovieId = async (id) => {
-  return  axios.all(id.map((endpoint) => axios.get(endpoint)))
+  //console.log(typeof(id))
+  return  axios.all(id.map((endpoint) => 
+  axios.get(endpoint)))
+}
+
+export const getCharactersApi = async () => {
+  return instance.get(`people/`)
+  .then(res => {
+    if(res.status === 200)
+    return res.data.results
+  }
+  )
 }
 
 export const getMovieById = async (id) => {
@@ -33,17 +52,6 @@ export const getMovieById = async (id) => {
     return res.data 
   })
 }
-
-
-export const getCharactersApi = async () => {
-  return instance.get(`people/`)
-  .then(res => {
-    if(res.status === 200)
-      return res.data.results
-    }
-  )
-}
-
 
 
 

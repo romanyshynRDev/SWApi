@@ -5,16 +5,12 @@ import { getMoviesList } from '../Service/ApiService'
 const initialState = {    
   list: [],
   isLoading: false,
-  characters: [],
 }
 
 const moviesList = createSlice({
   name: 'movies',
   initialState,
   reducers:{
-    getCharacter: (state, action) => {
-       state.characters = action.payload
-    }
   },
   extraReducers: {
     [getMoviesList.pending]: (state, action) => {
@@ -30,7 +26,6 @@ const moviesList = createSlice({
 } 
 })
 
-export const { getCharacter, charactersLoading } = moviesList.actions
 export default moviesList.reducer
 
 
