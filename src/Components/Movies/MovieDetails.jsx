@@ -1,27 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect }  from 'react';
 import s from './style.module.css'
-import Loader from './../Loader/Loader'
-import CharacterInfo from './Character/Character'
+import { useDispatch, useSelector } from 'react-redux';
+import { getPersonagesByMovie } from '../../Service/ApiService';
+import { NavLink } from 'react-router-dom';
 
 const MovieDetails = (props) => {
-
+  const { personages, characters } = useSelector(state => state.movieDetails)
+  const dispatch = useDispatch()
   
+  useEffect(() => {
+  dispatch(getPersonagesByMovie(personages))
+}, [dispatch, personages])
+
   return (
-      <div className={s.container}>
+      <div>
+        <div className={s.container}>
         <h2> {props.movieInfo.title}</h2> 
-        { !props.isLoading 
-        ? <Loader/> 
-        : <div>
               <li><span>Createdd: </span>{props.movieInfo.created} </li>
               <li><span>Director: </span>{props.movieInfo.director} </li>
               <li><span>Episode: </span>{props.movieInfo.episode_id}</li>
               <li><span>Release date: </span>{props.movieInfo.release_date}</li>
-              <li><h2>Personages</h2>{props.movieInfo.character}</li>
+              <h2>Personages</h2>
+        </div>
+            {characters.map((i, id) => 
+            <div key={id}>
+              
+              <NavLink to={`/personage/${i.url.match(/\d+/g)}`}>
+                <li ><span>Name: </span>{i.name}</li>
+              </NavLink>
+
             </div>
-        } 
-               
-        {/* <CharacterInfo {...props}/> */}
-      
+           )} 
      </div>
   )
 }

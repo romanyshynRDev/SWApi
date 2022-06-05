@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { characterFilms } from '../redux/characterInfo'
+import { getMovieDetails, getMoviePersonages, charactersInfo } from '../redux/movieDetailsInfo'
 
 const instance = axios.create({
   baseURL:`https://swapi.dev/api/`,
@@ -25,34 +27,32 @@ export const getFilmById = createAsyncThunk(
   'movieDetails/getFilmById',
   async (id, {dispatch}) => {
     return instance.get(`films/${id}`)
-    .then((res) => {
-        return res.data
+    .then((res) => {      
+      dispatch(getMovieDetails(res.data))
+      dispatch(getMoviePersonages(res.data.characters))
       })
   }
 )
+export  const getPersonagesByMovie = createAsyncThunk(
+  'movieDetails/getPersonagesByMovie',
+  async (id, {dispatch}) => {
+    return  axios.all(id.map((end) => axios.get(end))).then(
+      (res => {
+          dispatch(charactersInfo(res.map(i => i.data)))
+      })
+    )   
+})
 
-export const getCharactersByMovieId = async (id) => {
-  //console.log(typeof(id))
-  return  axios.all(id.map((endpoint) => 
-  axios.get(endpoint)))
-}
+export  const getPersonageFilms = createAsyncThunk(
+  'personageInfo/getPersonageFilms',
+  async (id, {dispatch}) => {
+    return  axios.all(id.map((end) => axios.get(end))).then(
+      (res => {
+          dispatch(characterFilms(res.map(i => i.data)))
+      })
+    )   
+})
 
-export const getCharactersApi = async () => {
-  return instance.get(`people/`)
-  .then(res => {
-    if(res.status === 200)
-    return res.data.results
-  }
-  )
-}
-
-export const getMovieById = async (id) => {
-  return instance.get(`films/${id}`)
-  .then((res) => {
-    return res.data 
-  })
-}
-
-
+     
 
 

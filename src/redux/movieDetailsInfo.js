@@ -1,35 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getFilmById } from "../Service/ApiService";
 
 const initialState = {
   movieInfo: [],
   personages: [],
   isLoading: false,
+  characters: [],
 }
-
 
 const movieDetails = createSlice({
   name: 'movieDetails',
   initialState,
   reducers:{
-    getPersonages: (state, action) => {
+    charactersInfo: (state, action) => {
+      state.characters = action.payload
+    },
+    getMoviePersonages: (state, action) => {
       state.personages = action.payload
+    },
+    getMovieDetails: (state, {payload}) => {
+      state.movieInfo = payload
     }
   },
   extraReducers: {
-    [getFilmById.pending]: (state, action) => {
-      state.isLoading = true
-    },
-    [getFilmById.fulfilled]: (state, { payload }) => {
-      state.movieInfo = payload
-      state.isLoading = true
-    },
-    [getFilmById.rejected]: (state, { payload }) => {
-      state.isLoading = false
-    },
   }, 
 })
 
-export const { getPersonages } = movieDetails.actions
+export const { getMoviePersonages, getMovieDetails,resetCharacters,  charactersInfo } = movieDetails.actions
 export default movieDetails.reducer
 

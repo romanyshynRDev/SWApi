@@ -1,11 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
-import Personage from './Components/Personage/Personage';
 import HomePage from './Components/HomePage/HomePage';
 import MenuNavigation from './Components/Navigation/Navbar';
-import style from './App.css'
+import './App.css'
 import MoviePage from './Components/Movies/MoviePage';
-
+import PersonageContainer from './Components/Personage/Personage';
 
 function App() {
 
@@ -16,7 +15,7 @@ function App() {
             <Routes>
                <Route path='/homepage' element={<HomePage/>}></Route>
                <Route path='/movies/:movieId' element={<MoviePage/>}></Route>
-               <Route path='/personage/:name' element={<Personage />}></Route>
+               <Route path='personage/:perId' element={<PersonageContainer />}></Route>
             </Routes>
          </div>
       </div>

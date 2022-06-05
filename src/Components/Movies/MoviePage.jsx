@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,21 +7,18 @@ import { getFilmById } from '../../Service/ApiService';
 
 const MovieContainer = () => {
 
-  const params = useParams()
-  const { movieInfo, personages, isLoading } = useSelector(state => state.movieDetails)
+  const { movieInfo } = useSelector(state => state.movieDetails)
   const dispatch = useDispatch()
+  const params = useParams()
   
   useEffect(() => {
-    dispatch(getFilmById(params.movieId))
-  }, [dispatch])
+    dispatch(getFilmById(params.movieId))  
+  }, [dispatch, params.movieId])
 
-  console.log('personages =>', personages)
   return (
     <div>
       <MovieDetails  
         movieInfo={movieInfo}
-        personages={personages} 
-        isLoading={isLoading} 
       />
     </div>
   )

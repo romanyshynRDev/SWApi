@@ -10,7 +10,6 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(getMoviesList())
   }, [dispatch])
-  
   return(
     <FilmContainer list={list} isLoading={isLoading} />
   )
