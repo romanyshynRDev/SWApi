@@ -1,9 +1,9 @@
- import l from './loader.module.css'
+ import style from './style.module.css'
 
  const Loader = () => {
 
   return (
-    <div className={l.loader}></div>
+    <div className={style.loader}></div>
   )
 }
 export default Loader

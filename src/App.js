@@ -1,10 +1,10 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'
-import HomePage from './Components/HomePage/HomePage';
+import { Routes, Route, Navigate } from 'react-router-dom'
+import HomePage from './pages/Home/HomeContainer';
 import MenuNavigation from './Components/Navigation/Navbar';
 import './App.css'
-import MoviePage from './Components/Movies/MoviePage';
-import PersonageContainer from './Components/Personage/Personage';
+import MoviePage from './pages/Movies/MoviePage';
+import PersonageContainer from './pages/Personage/Personage';
 
 function App() {
 
@@ -13,7 +13,8 @@ function App() {
          <MenuNavigation/>
          <div>
             <Routes>
-               <Route path='/homepage' element={<HomePage/>}></Route>
+               <Route path='/homepage/movies' element={<HomePage/>}></Route>
+               <Route path="/" element={<Navigate replace to="/homepage/movies" />} />
                <Route path='/movies/:movieId' element={<MoviePage/>}></Route>
                <Route path='personage/:perId' element={<PersonageContainer />}></Route>
             </Routes>

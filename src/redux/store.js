@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import characterInfo from './characterInfo'
-import moviesList from './films'
-import movieDetailsInfo from './movieDetailsInfo'
+import characterInfo from './slices/characterInfo'
+import moviesList from './slices/films'
+import movieDetailsInfo from './slices/movieDetailsInfo'
 
 export default configureStore({
   reducer: {

@@ -1,5 +1,5 @@
 import { createSlice} from '@reduxjs/toolkit'
-import { getMoviesList } from '../Service/ApiService'
+import { getMoviesList } from '../../Service/ApiService'
 
 
 const initialState = {    

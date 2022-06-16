@@ -6,7 +6,7 @@ const MenuNavigation = () => {
   return (
     <nav className={style.menu}>
       <div className={style.menuItem}>
-        <NavLink to={'/homepage'}>STARS WARS</NavLink>
+        <NavLink to={'/homepage/movies'}>STARS WARS</NavLink>
       </div>
     </nav>
   )

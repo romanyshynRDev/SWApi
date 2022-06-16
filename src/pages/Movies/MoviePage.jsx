@@ -2,17 +2,17 @@ import React, { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import { useDispatch, useSelector } from "react-redux";
-import { getFilmById } from '../../Service/ApiService';
+import { getFilmById, getMovieInformation } from '../../Service/ApiService';
 
 
 const MovieContainer = () => {
 
-  const { movieInfo } = useSelector(state => state.movieDetails)
+  const { movieInfo, personages } = useSelector(state => state.movieDetails)
   const dispatch = useDispatch()
   const params = useParams()
   
   useEffect(() => {
-    dispatch(getFilmById(params.movieId))  
+    dispatch(getMovieInformation(params.movieId))
   }, [dispatch, params.movieId])
 
   return (
