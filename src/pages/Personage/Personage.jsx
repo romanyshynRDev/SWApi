@@ -6,41 +6,51 @@ import { characterInfoAPI } from "../../Service/ApiService"
 import style from './style.module.css'
 
 const PersonageContainer = () => {
-
   const params = useParams()    
   const dispatch = useDispatch()
 
-  const { characters } = useSelector(state => state.movieDetails)
-  const { personageDetails, personageFilms, isLoading } = useSelector(state => state.personage)
-
+ 
+  const result = useSelector((state) => {
+    return {
+      characters: state.movieDetails.characters,
+      personage: state.personage
+    }
+  })
+  
+  let person = result.personage.personageDetails
+  let data = result.personage
 
   useEffect(() => {
     const personDetails = () => {
-        characters.map((perId, id) => {     
+      result.characters.map((perId) => {     
           if(Number(perId.url.match(/\d+/g)) === 
           Number(params.perId)){ 
-            dispatch(characterInfoAPI(perId.url)) }
+              dispatch(characterInfoAPI(perId.url)) }
+              return 1
           })
+          
     }
     personDetails()
-  }, [dispatch,  characters, params])
+  }, [dispatch, result.characters, params])
 
   return(
+    
         <div className={style.container}>
-          { isLoading
+          { data.isLoading
             ? <Loader/> 
             :
           <div >
-              <li><span>Name: </span>{personageDetails.name}</li>
-              <li><span>Birth: </span>{personageDetails.birth_year}</li>
-              <li><span>Eye color: </span>{personageDetails.eye_color}</li>
-              <li><span>Gender: </span>{personageDetails.gender}</li>
-              <li><span>Hair color: </span>{personageDetails.hair_color}</li>
-              <li><span>Height: </span>{personageDetails.height}</li>
-              <li><span>Mass: </span>{personageDetails.mass}</li>
-              <li><span>Skin color:</span>{personageDetails.skin_color}</li>
+              <li><span>Name: </span>{person.name}</li>
+              <li><span>Birth: </span>{person.birth_year}</li>
+              <li><span>Eye color: </span>{person.eye_color}</li>
+              <li><span>Gender: </span>{person.gender}</li>
+              <li><span>Hair color: </span>{person.hair_color}</li>
+              <li><span>Height: </span>{person.height}</li>
+              <li><span>Mass: </span>{person.mass}</li>
+              <li><span>Skin color: </span>{person.skin_color}</li>
+        
               <h2>Films:</h2>
-                <div>{personageFilms.map((f, id) => 
+                <div>{data.personageFilms.map((f, id) => 
                       
               <NavLink key={id} to={`../.././movies/${f.url.match(/\d+/g)}`}>
                 <div >

@@ -41,14 +41,14 @@ export const getMovieInformation = createAsyncThunk(
 export const characterInfoAPI = createAsyncThunk(
   'personageInfo/characterInfoAPI',
   async(pid) => {
-   let actor = await axios.get(pid).then((res) => {
+    let actor = await axios.get(pid).then((res) => {
       return res.data
       
     })
     let actorMovies = await axios.all(actor.films.map((end) => axios.get(end))).then(
       (res => {
           return res.map(i => i.data)
-      })
+    })
     )
     return [actor, actorMovies]
   }

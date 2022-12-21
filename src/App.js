@@ -1,12 +1,12 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'
-import HomePage from './pages/Home/HomeContainer';
+import HomePage from './pages/Home/MainPage';
 import MenuNavigation from './Components/Navigation/Navbar';
 import './App.css'
 import MoviePage from './pages/Movies/MoviePage';
 import PersonageContainer from './pages/Personage/Personage';
 
-function App() {
+function App(props) {
 
    return (
       <div className='App-header'>
