@@ -6,6 +6,7 @@ import './App.css'
 import MoviePage from './pages/Movies/MoviePage';
 import PersonageContainer from './pages/Personage/Personage';
 
+
 function App(props) {
 
    return (
