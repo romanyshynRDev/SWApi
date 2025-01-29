@@ -34,7 +34,7 @@ const PersonageContainer = () => {
   }, [dispatch, result.characters, params])
 
   return(
-    
+    <>
         <div className={style.container}>
           { data.isLoading
             ? <Loader/> 
@@ -63,6 +63,7 @@ const PersonageContainer = () => {
           </div>
 }  
     </div>
+      </>
   )
 }
 
