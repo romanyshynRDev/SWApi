@@ -1,4 +1,5 @@
-import { sum } from './yourFile';
+import { sum } from "./division";
+
 
 describe('sum function', () => {
   it('should correctly divide two numbers', () => {
