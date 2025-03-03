@@ -5,8 +5,9 @@ jobs:
   init:
     runs-on: ubuntu-latest
     strategy: 
-    matrix:
-      node-version: [23.x]
+      matrix:
+        node-version: [23.x]
+        
   steps:
     -name: Checkout repository
     uses: actions/checkout@v4
@@ -14,7 +15,7 @@ jobs:
     -name: Setup Node.js
     uses: actions/setup-node@v4
     with:
-      node-version: ${{ matrix.node }}
+      node-version: ${{ matrix.node-version }}
         
       -name: install modules
       run: npm install 
