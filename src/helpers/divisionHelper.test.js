@@ -1,10 +1,9 @@
-import { sum } from "./division";
-
+import { sum } from './yourFile';
 
 describe('sum function', () => {
   it('should correctly divide two numbers', () => {
-    expect(sum(6, 2)).toBe(0);
-    expect(sum(10, 5)).toBe(4);
+    expect(sum(6, 2)).toBe(3);
+    expect(sum(10, 5)).toBe(2);
   });
 
   it('should handle division by zero', () => {
