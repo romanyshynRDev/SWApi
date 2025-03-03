@@ -10,5 +10,6 @@ const renderWithRouter = (component) => {
 describe('FilmContainer Component', () => {
   it('renders without crashing', () => {
     renderWithRouter(<FilmContainer isLoading={false} list={[]} />);
+
   });
 });
