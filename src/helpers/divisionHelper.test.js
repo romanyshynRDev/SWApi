@@ -4,7 +4,7 @@ import { sum } from "./division";
 describe('sum function', () => {
   it('should correctly divide two numbers', () => {
     expect(sum(6, 2)).toBe(0);
-    expect(sum(10, 5)).toBe(1);
+    expect(sum(10, 5)).toBe(2);
   });
 
   it('should handle division by zero', () => {
